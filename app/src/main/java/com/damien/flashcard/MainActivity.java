@@ -10,6 +10,11 @@ import android.graphics.Typeface;
 import android.widget.RadioGroup;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,8 +24,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        HashMap<String, String> companies = new HashMap<String, String>();
+        companies.put("Quel est le nom de cet animal", "South;San;Jose");
+        companies.put("Quel l'origine de cet animal", "North;Bla;Jose");
+        companies.put("Combien d'enfants", "Mountain;View;dsddssd");
+
+        // Get a random entry from the HashMap.
+        Object[] crunchifyKeys = companies.keySet().toArray();
+        Object key = crunchifyKeys[new Random().nextInt(crunchifyKeys.length)];
+        System.out.println("************ Random Value ************ \n" + key + " :: " + companies.get(key));
+
+
+        List<Map.Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>(companies.entrySet());
+
+        // Bonus Crunchify Tips: How to Shuffle a List??
+        // Each time you get a different order...
+        System.out.println("\n************ Now Let's start shuffling list ************");
+        Collections.shuffle(list);
+        for (Map.Entry<String, String> entry : list) {
+            System.out.println(entry.getKey() + " :: " + entry.getValue());
+        }
+
+        List<String> myList= new ArrayList<String>();
+
+
+
         // responses list
-        /*
         ArrayList<String>  mylist = new ArrayList<String>();
         mylist.add("code");
         mylist.add("quiz");
@@ -29,25 +58,20 @@ public class MainActivity extends AppCompatActivity {
         Collections.shuffle(mylist);
 
         // SET QUESTION
-        // random question
-        TextView question = findViewById(R.id.QuestionTextView);
-        question.setText("Test");
-
-
-        */
+        // Random question
+        /*TextView question = findViewById(R.id.QuestionTextView);
+        question.setText("Test");*/
 
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
         int count = radioGroup.getChildCount();
-        ArrayList<RadioButton> listOfRadioButtons = new ArrayList<RadioButton>();
+        //ArrayList<RadioButton> listOfRadioButtons = new ArrayList<RadioButton>();
         for (int i=0;i<count;i++) {
             View o = radioGroup.getChildAt(i);
             if (o instanceof RadioButton) {
-                Log.i("child", "child"+ o);
-
-                listOfRadioButtons.add((RadioButton)o);
-
+                //listOfRadioButtons.add((RadioButton)o);
+                // Set the text of radioButton
                 ((RadioButton)radioGroup.getChildAt(i)).setText("TEST" + i);
             }
         }
