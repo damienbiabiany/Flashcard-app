@@ -7,11 +7,12 @@
     tools:context=".MainActivity">
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="350dp"
         android:layout_marginLeft="350dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="320dp"
         android:layout_marginEnd="319dp"
         android:layout_marginRight="319dp"
         android:checkedButton="@+id/first"
@@ -24,44 +25,66 @@
             android:id="@+id/first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:text="réponse1"
             tools:layout_editor_absoluteX="152dp"
-            tools:layout_editor_absoluteY="273dp"
-            android:onClick="onRadioButtonClicked"
-            />
+            tools:layout_editor_absoluteY="273dp" />
 
         <RadioButton
             android:id="@+id/second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:text="réponse2"
             tools:layout_editor_absoluteX="152dp"
-            tools:layout_editor_absoluteY="321dp"
-            android:onClick="onRadioButtonClicked"
-            />
+            tools:layout_editor_absoluteY="321dp" />
 
         <RadioButton
             android:id="@+id/third"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:text="réponse3"
             tools:layout_editor_absoluteX="152dp"
-            tools:layout_editor_absoluteY="321dp"
-            android:onClick="onRadioButtonClicked"
-            />
+            tools:layout_editor_absoluteY="321dp" />
 
 
     </RadioGroup>
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="209dp"
-        android:layout_height="303dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="203dp"
+        android:layout_height="274dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/easy_loup" />
+
+    <TextView
+        android:id="@+id/QuestionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quel est le nom de cet animal ?"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.508" />
+
+    <Button
+        android:id="@+id/SubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="68dp"
+        android:text="Valider la réponse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.603"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="0.339" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
