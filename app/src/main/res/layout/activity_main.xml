@@ -47,6 +47,13 @@
 
     </RadioGroup>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="209dp"
+        android:layout_height="303dp"
+        app:srcCompat="@drawable/easy_loup"
+        tools:layout_editor_absoluteX="115dp"
+        tools:layout_editor_absoluteY="30dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
