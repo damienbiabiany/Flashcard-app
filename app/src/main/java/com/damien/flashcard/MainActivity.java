@@ -2,10 +2,12 @@ package com.damien.flashcard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.graphics.Typeface;
@@ -17,7 +19,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set Random ImageView from @drawable
         // String uri = "@drawable/difficult_okapi";  // where myresource (without the extension) is the file
-        String uri = questionImageMap.get(key);
+        String uri        = questionImageMap.get(key);
         int imageResource = getResources().getIdentifier(uri, null, getPackageName());
 
         ImageView imageView    = (ImageView)findViewById(R.id.imageView);
@@ -90,17 +91,61 @@ public class MainActivity extends AppCompatActivity {
                 ((RadioButton)radioGroup.getChildAt(i)).setText("" + mylist.get(i));
             }
         }
-
-
     }
 
-    //validate response
+    //Validate the answer response
     public void onSubmitAnswerClicked(View  view) {
-        // Good answers by question Map
 
-        // retrieve the radio button checked
+        Button submitButton = findViewById(R.id.SubmitButton);
+        submitButton.setText("Question suivante");
+
+        // Good answers by question Map
+        // -------- Map Questions, Responses -------
+        HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
+        questionAnswerMap.put("Quel est le nom de cet animal ?", "San");
+        questionAnswerMap.put("Quel l'origine de cet animal ?", "Bla");
+        questionAnswerMap.put("Combien d'enfants ?", "View");
+
+
+        // get the  current question
+        TextView currentQuestion = findViewById(R.id.QuestionTextView) ;
+        String currentQuestionValue = currentQuestion.getText().toString();
+
+        // get the correct answer associated to the question
+        String goodAnswer =  questionAnswerMap.get(currentQuestionValue);
+        Log.i("goodAnswer =",  goodAnswer);
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
+        // get the current radio button checked when we clicked onSubmit Button
+        // get selected radio button from radioGroup
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+
+        // find the radiobutton by returned id
+        RadioButton radioButtonChecked = (RadioButton) findViewById(selectedId);
+        Log.i("radioButtonChecked",radioButtonChecked.getText().toString());
 
         // Bad or Wrong
+        TextView goodOrBad    = findViewById(R.id.GoodBadAnswerTextView);
+        TextView answerWas    = findViewById(R.id.TheAnswerWasTextView);
+
+        System.out.println( ( goodAnswer.equals(radioButtonChecked.getText() )  ));
+        Log.i("length",""+ ( goodAnswer.length() ));
+        Log.i("length",""+ ( radioButtonChecked.length() ));
+        Log.i("test"  ,""+ ( goodAnswer.getClass()));
+        Log.i("test"  ,""+ ( radioButtonChecked.getText().getClass()) );
+
+        if( goodAnswer.equals(radioButtonChecked.getText().toString() ) ) {
+            goodOrBad.setText("Bonne réponse");
+            goodOrBad.setTypeface(null, Typeface.BOLD);
+            goodOrBad.setTextColor(Color.GREEN);
+            answerWas.setText("La bonne réponse était " + goodAnswer);
+        } else {
+            goodOrBad.setText("Mauvaise réponse");
+            goodOrBad.setTypeface(null, Typeface.BOLD);
+            goodOrBad.setTextColor(Color.RED);
+            answerWas.setText("La bonne réponse était " + goodAnswer);
+        }
+
     }
 
     public void onRadioButtonClicked(View  view) {
@@ -150,5 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
+
+
     }
 }
