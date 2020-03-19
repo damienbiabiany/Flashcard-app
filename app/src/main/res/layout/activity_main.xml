@@ -26,7 +26,9 @@
             android:layout_height="wrap_content"
             android:text="réponse1"
             tools:layout_editor_absoluteX="152dp"
-            tools:layout_editor_absoluteY="273dp" />
+            tools:layout_editor_absoluteY="273dp"
+            android:onClick="onRadioButtonClicked"
+            />
 
         <RadioButton
             android:id="@+id/second"
@@ -34,7 +36,9 @@
             android:layout_height="wrap_content"
             android:text="réponse2"
             tools:layout_editor_absoluteX="152dp"
-            tools:layout_editor_absoluteY="321dp" />
+            tools:layout_editor_absoluteY="321dp"
+            android:onClick="onRadioButtonClicked"
+            />
 
         <RadioButton
             android:id="@+id/third"
@@ -42,7 +46,9 @@
             android:layout_height="wrap_content"
             android:text="réponse3"
             tools:layout_editor_absoluteX="152dp"
-            tools:layout_editor_absoluteY="321dp" />
+            tools:layout_editor_absoluteY="321dp"
+            android:onClick="onRadioButtonClicked"
+            />
 
 
     </RadioGroup>
@@ -51,9 +57,11 @@
         android:id="@+id/imageView"
         android:layout_width="209dp"
         android:layout_height="303dp"
-        app:srcCompat="@drawable/easy_loup"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="30dp" />
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/easy_loup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
