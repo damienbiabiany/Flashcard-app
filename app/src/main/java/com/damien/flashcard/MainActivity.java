@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.graphics.Typeface;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -32,35 +34,27 @@ public class MainActivity extends AppCompatActivity {
         // Get a random entry from the HashMap.
         Object[] crunchifyKeys = companies.keySet().toArray();
         Object key = crunchifyKeys[new Random().nextInt(crunchifyKeys.length)];
-        System.out.println("************ Random Value ************ \n" + key + " :: " + companies.get(key));
 
+        // System.out.println("************ Random Value ************ \n" + key + " :: " + companies.get(key));
+        System.out.println("************ Random Question ************ \n" + key);
+        System.out.println("************ Random response ************ \n" + companies.get(key));
 
         List<Map.Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>(companies.entrySet());
 
-        // Bonus Crunchify Tips: How to Shuffle a List??
-        // Each time you get a different order...
-        System.out.println("\n************ Now Let's start shuffling list ************");
-        Collections.shuffle(list);
-        for (Map.Entry<String, String> entry : list) {
-            System.out.println(entry.getKey() + " :: " + entry.getValue());
-        }
+        TextView question = findViewById(R.id.QuestionTextView);
+        question.setText(key.toString());
 
+        // Random response
         List<String> myList= new ArrayList<String>();
-
-
-
-        // responses list
-        ArrayList<String>  mylist = new ArrayList<String>();
-        mylist.add("code");
-        mylist.add("quiz");
-        mylist.add("geeksforgeeks");
+        String str[] = companies.get(key).split(";");
+        List<String> mylist = new ArrayList<String>();
+        mylist = Arrays.asList(str);
+        System.out.println("************  al ************ \n" + mylist);
 
         Collections.shuffle(mylist);
 
         // SET QUESTION
-        // Random question
-        /*TextView question = findViewById(R.id.QuestionTextView);
-        question.setText("Test");*/
+
 
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
@@ -72,12 +66,20 @@ public class MainActivity extends AppCompatActivity {
             if (o instanceof RadioButton) {
                 //listOfRadioButtons.add((RadioButton)o);
                 // Set the text of radioButton
-                ((RadioButton)radioGroup.getChildAt(i)).setText("TEST" + i);
+                ((RadioButton)radioGroup.getChildAt(i)).setText("" + mylist.get(i));
             }
         }
 
     }
 
+    //validate response
+    public void onSubmitAnswerClicked(View  view) {
+        // Good answers by question Map
+
+        // retrieve the radio button checked
+
+        // Bad or Wrong
+    }
 
     public void onRadioButtonClicked(View  view) {
 
