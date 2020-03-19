@@ -3,12 +3,14 @@ package com.damien.flashcard;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.graphics.Typeface;
 import android.widget.RadioGroup;
@@ -129,10 +131,10 @@ public class MainActivity extends AppCompatActivity {
         TextView answerWas    = findViewById(R.id.TheAnswerWasTextView);
 
         System.out.println( ( goodAnswer.equals(radioButtonChecked.getText() )  ));
-        Log.i("length",""+ ( goodAnswer.length() ));
-        Log.i("length",""+ ( radioButtonChecked.length() ));
-        Log.i("test"  ,""+ ( goodAnswer.getClass()));
-        Log.i("test"  ,""+ ( radioButtonChecked.getText().getClass()) );
+        // Log.i("length",""+ ( goodAnswer.length() ));
+        // Log.i("length",""+ ( radioButtonChecked.length() ));
+        // Log.i("test"  ,""+ ( goodAnswer.getClass()));
+        // Log.i("test"  ,""+ ( radioButtonChecked.getText().getClass()) );
 
         if( goodAnswer.equals(radioButtonChecked.getText().toString() ) ) {
             goodOrBad.setText("Bonne réponse");
@@ -146,8 +148,35 @@ public class MainActivity extends AppCompatActivity {
             answerWas.setText("La bonne réponse était " + goodAnswer);
         }
 
+        // Call the next question in extra (transmettre data to the next activity)
     }
 
+    public void onImageClicked(View  view) {
+
+        // ----- if countClick 1 -----
+        ImageView imageView2    = (ImageView)findViewById(R.id.imageView);
+        System.out.println("width  =" + imageView2.getWidth() );
+        System.out.println("height =" + imageView2.getHeight() );
+
+
+        int newHeight = imageView2.getHeight() + 200; // New height in pixels
+        int newWidth  = imageView2.getWidth() + 200; // New width in pixels
+
+        imageView2.requestLayout();
+        /* getLayoutParams() Get the LayoutParams associated with this view.*/
+
+        // Apply the new height for ImageView programmatically
+        imageView2.getLayoutParams().height = newHeight;
+
+        // Apply the new width for ImageView programmatically
+        imageView2.getLayoutParams().width = newWidth;
+
+        // Set the scale type for ImageView image scaling
+        imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        // ------- if countClick 2  ------
+
+    }
     public void onRadioButtonClicked(View  view) {
 
         //require to import the RadioButton class
