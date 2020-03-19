@@ -2,9 +2,11 @@ package com.damien.flashcard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.graphics.Typeface;
 import android.widget.RadioGroup;
@@ -26,49 +28,64 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HashMap<String, String> companies = new HashMap<String, String>();
-        companies.put("Quel est le nom de cet animal", "South;San;Jose");
-        companies.put("Quel l'origine de cet animal", "North;Bla;Jose");
-        companies.put("Combien d'enfants", "Mountain;View;dsddssd");
+        // -------- Map Questions, Responses -------
+        HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
+        questionAnswerMap.put("Quel est le nom de cet animal ?", "South;San;Jose");
+        questionAnswerMap.put("Quel l'origine de cet animal ?", "North;Bla;Jose");
+        questionAnswerMap.put("Combien d'enfants ?", "Mountain;View;dsddssd");
 
-        // Get a random entry from the HashMap.
-        Object[] crunchifyKeys = companies.keySet().toArray();
+        // -------- Map Questions, Images ------
+        HashMap<String, Object> questionImageMap = new HashMap<String, Object>();
+        questionImageMap.put("Quel est le nom de cet animal ?", "@drawable/difficult_okapi");
+        questionImageMap.put("Quel l'origine de cet animal ?", "@drawable/difficult_pudu");
+        questionImageMap.put("Combien d'enfants ?", "@drawable/easy_giraffe");
+
+
+        // Get a random entry from the questionImageMap.
+        Object[] crunchifyKeys = questionAnswerMap.keySet().toArray();
         Object key = crunchifyKeys[new Random().nextInt(crunchifyKeys.length)];
-
-        // System.out.println("************ Random Value ************ \n" + key + " :: " + companies.get(key));
+        // System.out.println("************ Random Value ************ \n" + key + " :: " + questionAnswerMap.get(key));
         System.out.println("************ Random Question ************ \n" + key);
-        System.out.println("************ Random response ************ \n" + companies.get(key));
+        System.out.println("************ Random Response ************ \n" + questionAnswerMap.get(key));
 
-        List<Map.Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>(companies.entrySet());
+        //
+        List<Map.Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>(questionAnswerMap.entrySet());
 
+        // Set Random Question
         TextView question = findViewById(R.id.QuestionTextView);
         question.setText(key.toString());
 
+        // Set Random Image from @drawable
+        String uri = "@drawable/difficult_okapi";  // where myresource (without the extension) is the file
+        int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+
+        ImageView imageView    = (ImageView)findViewById(R.id.imageView);
+        Drawable res           = getResources().getDrawable(imageResource);
+        imageView.setImageDrawable(res);
+
         // Random response
         List<String> myList= new ArrayList<String>();
-        String str[] = companies.get(key).split(";");
+
+        // Convert string to Array
+        String str[] = questionAnswerMap.get(key).split(";");
         List<String> mylist = new ArrayList<String>();
+
         mylist = Arrays.asList(str);
         System.out.println("************  al ************ \n" + mylist);
 
         Collections.shuffle(mylist);
 
-        // SET QUESTION
-
-
-
+        // SET text to each radiobutton in radiogroup
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-
         int count = radioGroup.getChildCount();
-        //ArrayList<RadioButton> listOfRadioButtons = new ArrayList<RadioButton>();
         for (int i=0;i<count;i++) {
             View o = radioGroup.getChildAt(i);
             if (o instanceof RadioButton) {
-                //listOfRadioButtons.add((RadioButton)o);
                 // Set the text of radioButton
                 ((RadioButton)radioGroup.getChildAt(i)).setText("" + mylist.get(i));
             }
         }
+
 
     }
 
