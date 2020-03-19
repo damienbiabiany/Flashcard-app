@@ -34,36 +34,42 @@ public class MainActivity extends AppCompatActivity {
         questionAnswerMap.put("Quel l'origine de cet animal ?", "North;Bla;Jose");
         questionAnswerMap.put("Combien d'enfants ?", "Mountain;View;dsddssd");
 
-        // -------- Map Questions, Images ------
-        HashMap<String, Object> questionImageMap = new HashMap<String, Object>();
-        questionImageMap.put("Quel est le nom de cet animal ?", "@drawable/difficult_okapi");
-        questionImageMap.put("Quel l'origine de cet animal ?", "@drawable/difficult_pudu");
-        questionImageMap.put("Combien d'enfants ?", "@drawable/easy_giraffe");
-
-
         // Get a random entry from the questionImageMap.
         Object[] crunchifyKeys = questionAnswerMap.keySet().toArray();
         Object key = crunchifyKeys[new Random().nextInt(crunchifyKeys.length)];
         // System.out.println("************ Random Value ************ \n" + key + " :: " + questionAnswerMap.get(key));
         System.out.println("************ Random Question ************ \n" + key);
         System.out.println("************ Random Response ************ \n" + questionAnswerMap.get(key));
+        //List<Map.Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>(questionAnswerMap.entrySet());
 
-        //
-        List<Map.Entry<String, String>> list = new ArrayList<Map.Entry<String, String>>(questionAnswerMap.entrySet());
+        // -------- Map Questions, Images ------
+        HashMap<String, String> questionImageMap = new HashMap<String, String>();
+        questionImageMap.put("Quel est le nom de cet animal ?", "@drawable/difficult_okapi");
+        questionImageMap.put("Quel l'origine de cet animal ?", "@drawable/difficult_pudu");
+        questionImageMap.put("Combien d'enfants ?", "@drawable/easy_giraffe");
+
+        // Get a random entry from the questionImageMap.
+        Object[] crunchifyKeysImage = questionAnswerMap.keySet().toArray();
+        // System.out.println("************ Random Value ************ \n" + key + " :: " + questionAnswerMap.get(key));
+        System.out.println("************ Random Image ************ \n" + questionImageMap.get(key));
+
+
+
 
         // Set Random Question
         TextView question = findViewById(R.id.QuestionTextView);
         question.setText(key.toString());
 
-        // Set Random Image from @drawable
-        String uri = "@drawable/difficult_okapi";  // where myresource (without the extension) is the file
+        // Set Random ImageView from @drawable
+        // String uri = "@drawable/difficult_okapi";  // where myresource (without the extension) is the file
+        String uri = questionImageMap.get(key);
         int imageResource = getResources().getIdentifier(uri, null, getPackageName());
 
         ImageView imageView    = (ImageView)findViewById(R.id.imageView);
         Drawable res           = getResources().getDrawable(imageResource);
         imageView.setImageDrawable(res);
 
-        // Random response
+        // Random response for radiobutton text
         List<String> myList= new ArrayList<String>();
 
         // Convert string to Array
@@ -74,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("************  al ************ \n" + mylist);
 
         Collections.shuffle(mylist);
+
 
         // SET text to each radiobutton in radiogroup
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
