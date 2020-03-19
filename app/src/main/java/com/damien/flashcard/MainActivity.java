@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("************ Random Image ************ \n" + questionImageMap.get(key));
 
 
-
-
         // Set Random Question
         TextView question = findViewById(R.id.QuestionTextView);
         question.setText(key.toString());
