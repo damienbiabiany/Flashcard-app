@@ -25,12 +25,17 @@ import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
-    public int countClick = 0;
+    public int countClick            = 0;
+    public int questionIndex         = 1;
+    public int totalNumberOfQuestion = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Set the initial index of the question
+        this.setTitle("AnimalCard 1/2");
 
         // -------- Map Questions, Responses -------
         HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
@@ -96,7 +101,10 @@ public class MainActivity extends AppCompatActivity {
 
     //Validate the answer response
     public void onSubmitAnswerClicked(View  view) {
+        this.questionIndex++;
+        this.setTitle("AnimalCard " + this.questionIndex+"/2");
 
+        // Change the text of submit button dynamically
         Button submitButton = findViewById(R.id.SubmitButton);
         submitButton.setText("Question suivante");
 
@@ -178,16 +186,15 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("countClick =" + this.countClick);
 
         }
-
-
     }
+
+
     public void onRadioButtonClicked(View  view) {
 
         //require to import the RadioButton class
         RadioButton rb1 = findViewById(R.id.first);
         RadioButton rb2 = findViewById(R.id.second);
         RadioButton rb3 = findViewById(R.id.third);
-
 
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -228,7 +235,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
-
 
     }
 }
