@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public int countClick            = 0;
     public int questionIndex         = 1;
     public int totalNumberOfQuestion = 2;
+    public int totalGoodAnswers      = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +156,8 @@ public class MainActivity extends AppCompatActivity {
                 goodOrBad.setTypeface(null, Typeface.BOLD);
                 goodOrBad.setTextColor(Color.GREEN);
                 answerWas.setText("La bonne réponse était : " + goodAnswer);
+                this.totalGoodAnswers++;
+
             } else {
                 goodOrBad.setText("Mauvaise réponse");
                 goodOrBad.setTypeface(null, Typeface.BOLD);
@@ -166,7 +169,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(this.questionIndex > this.totalNumberOfQuestion )  {
             System.out.println("End of quiz");
+            // Good answers
+            int ScorePercentage = (this.totalGoodAnswers * 100)/this.totalNumberOfQuestion;
 
+            Log.i("answers",""+ ScorePercentage + "%");
             // Change the text of submit button dynamically
             submitButton.setText("Voir les Résultats");
         }
