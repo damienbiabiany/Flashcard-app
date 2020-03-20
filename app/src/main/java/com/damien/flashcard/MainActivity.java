@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         // -------- Map Questions, Responses -------
         HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
         questionAnswerMap.put("Quel est le nom de cet animal ?", "okapi;pudu;cerf");
-        questionAnswerMap.put("Quel l'origine de cet animal ?", "Argentine et Chili;Inde;Canada");
+        questionAnswerMap.put("Quel est le pays d'origine de cet animal ?", "Argentine et Chili;Inde;Canada");
         questionAnswerMap.put("Nombre de petits par portée ?", "1;2;4");
 
         // Get a random entry from the questionImageMap.
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // -------- Map Questions, Images ------
         HashMap<String, String> questionImageMap = new HashMap<String, String>();
         questionImageMap.put("Quel est le nom de cet animal ?", "@drawable/difficult_okapi");
-        questionImageMap.put("Quel l'origine de cet animal ?", "@drawable/difficult_pudu");
+        questionImageMap.put("Quel est le pays d'origine de cet animal ?", "@drawable/difficult_pudu");
         questionImageMap.put("Nombre de petits par portée ?", "@drawable/easy_giraffe");
 
         // Get a random entry from the questionImageMap.
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             // -------- Map Questions, Responses -------
             HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
             questionAnswerMap.put("Quel est le nom de cet animal ?", "okapi");
-            questionAnswerMap.put("Quel l'origine de cet animal ?", "Argentine et Chili");
+            questionAnswerMap.put("Quel est le pays d'origine de cet animal ?", "Argentine et Chili");
             questionAnswerMap.put("Nombre de petits par portée ?", "1");
 
             // get the  current question
@@ -151,14 +151,19 @@ public class MainActivity extends AppCompatActivity {
             // Log.i("test"  ,""+ ( goodAnswer.getClass()));
             // Log.i("test"  ,""+ ( radioButtonChecked.getText().getClass()) );
 
-            if (goodAnswer.equals(radioButtonChecked.getText().toString())) {
+            if (goodAnswer.equals(radioButtonChecked.getText().toString())
+                   // && (submitButton.getText().equals("Question suivante")== true)
+            ) {
                 goodOrBad.setText("Bonne réponse");
                 goodOrBad.setTypeface(null, Typeface.BOLD);
                 goodOrBad.setTextColor(Color.GREEN);
                 answerWas.setText("La bonne réponse était : " + goodAnswer);
                 this.totalGoodAnswers++;
 
-            } else {
+            }
+            if (goodAnswer.equals(radioButtonChecked.getText().toString())
+                    // && (submitButton.getText().equals("Valider la réponse")== true)
+            ) {
                 goodOrBad.setText("Mauvaise réponse");
                 goodOrBad.setTypeface(null, Typeface.BOLD);
                 goodOrBad.setTextColor(Color.RED);
@@ -170,9 +175,9 @@ public class MainActivity extends AppCompatActivity {
         if(this.questionIndex > this.totalNumberOfQuestion )  {
             System.out.println("End of quiz");
             // Good answers
-            int ScorePercentage = (this.totalGoodAnswers * 100)/this.totalNumberOfQuestion;
+            int ScorePercentage = this.totalGoodAnswers*100;
 
-            Log.i("answers",""+ ScorePercentage + "%");
+            Log.i("SCORE",""+ ScorePercentage + "%");
             // Change the text of submit button dynamically
             submitButton.setText("Voir les Résultats");
         }
