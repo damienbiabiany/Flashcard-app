@@ -27,7 +27,6 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     public int countClick = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         questionAnswerMap.put("Quel est le nom de cet animal ?", "San");
         questionAnswerMap.put("Quel l'origine de cet animal ?", "Bla");
         questionAnswerMap.put("Combien d'enfants ?", "View");
-
 
         // get the  current question
         TextView currentQuestion = findViewById(R.id.QuestionTextView) ;
