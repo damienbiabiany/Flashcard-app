@@ -104,15 +104,6 @@ public class MainActivity extends AppCompatActivity {
         Button submitButton = findViewById(R.id.SubmitButton);
         System.out.println("value =" + submitButton.getText());
 
-        /*
-        if (submitButton.getText().equals("Question suivante")){
-            this.questionIndex++;
-
-            // Change the text of submit button dynamically
-            submitButton.setText("Valider la réponse");
-
-        }*/
-
         if(this.questionIndex <= this.totalNumberOfQuestion )  {
             this.setTitle("AnimalCard - " + this.questionIndex + "/2");
 
