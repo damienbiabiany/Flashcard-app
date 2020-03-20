@@ -2,6 +2,7 @@ package com.damien.flashcard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
@@ -99,6 +100,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void GetRandomQuestion(View  view){
+
+
+    }
+
     //Validate the answer response
     public void onSubmitAnswerClicked(View  view) {
 
@@ -111,9 +117,15 @@ public class MainActivity extends AppCompatActivity {
             // Change the text of submit button dynamically
             if (submitButton.getText().equals("Question suivante")){
                 submitButton.setText("Valider la réponse");
+
+
+            // RECREATE THE ACTIVITY
             } else {
                 this.questionIndex++;
                 submitButton.setText("Question suivante");
+
+
+
             }
 
 
@@ -152,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
             // Log.i("test"  ,""+ ( radioButtonChecked.getText().getClass()) );
 
             if (goodAnswer.equals(radioButtonChecked.getText().toString())
-                   // && (submitButton.getText().equals("Question suivante")== true)
             ) {
                 goodOrBad.setText("Bonne réponse");
                 goodOrBad.setTypeface(null, Typeface.BOLD);
@@ -161,9 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 this.totalGoodAnswers++;
 
             }
-            if (goodAnswer.equals(radioButtonChecked.getText().toString())
-                    // && (submitButton.getText().equals("Valider la réponse")== true)
-            ) {
+            else {
                 goodOrBad.setText("Mauvaise réponse");
                 goodOrBad.setTypeface(null, Typeface.BOLD);
                 goodOrBad.setTextColor(Color.RED);
