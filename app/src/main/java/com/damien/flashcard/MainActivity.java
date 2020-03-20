@@ -27,6 +27,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     public int countClick = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +58,11 @@ public class MainActivity extends AppCompatActivity {
         // System.out.println("************ Random Value ************ \n" + key + " :: " + questionAnswerMap.get(key));
         System.out.println("************ Random Image ************ \n" + questionImageMap.get(key));
 
-
         // Set Random Question
         TextView question = findViewById(R.id.QuestionTextView);
         question.setText(key.toString());
 
         // Set Random ImageView from @drawable
-        // String uri = "@drawable/difficult_okapi";  // where myresource (without the extension) is the file
         String uri        = questionImageMap.get(key);
         int imageResource = getResources().getIdentifier(uri, null, getPackageName());
 
@@ -162,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("width  =" + imageView2.getWidth() );
             System.out.println("height =" + imageView2.getHeight() );
 
-            int newHeight = imageView2.getHeight() + 150; // New height in pixels
+            int newHeight = imageView2.getHeight() + 100; // New height in pixels
             int newWidth  = imageView2.getWidth() + 180; // New width in pixels
 
             imageView2.requestLayout();
