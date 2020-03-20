@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
         questionAnswerMap.put("Quel est le nom de cet animal ?", "okapi;pudu;cerf");
         questionAnswerMap.put("Quel l'origine de cet animal ?", "Argentine et Chili;Inde;Canada");
-        questionAnswerMap.put("Nombre de petis par portée ?", "1;2;4");
+        questionAnswerMap.put("Nombre de petits par portée ?", "1;2;4");
 
         // Get a random entry from the questionImageMap.
         Object[] crunchifyKeys = questionAnswerMap.keySet().toArray();
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, String> questionImageMap = new HashMap<String, String>();
         questionImageMap.put("Quel est le nom de cet animal ?", "@drawable/difficult_okapi");
         questionImageMap.put("Quel l'origine de cet animal ?", "@drawable/difficult_pudu");
-        questionImageMap.put("Nombre de petis par portée ?", "@drawable/easy_giraffe");
+        questionImageMap.put("Nombre de petits par portée ?", "@drawable/easy_giraffe");
 
         // Get a random entry from the questionImageMap.
         Object[] crunchifyKeysImage = questionAnswerMap.keySet().toArray();
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
         questionAnswerMap.put("Quel est le nom de cet animal ?", "okapi");
         questionAnswerMap.put("Quel l'origine de cet animal ?", "Argentine et Chili");
-        questionAnswerMap.put("Nombre de petis par portée ?", "1");
+        questionAnswerMap.put("Nombre de petits par portée ?", "1");
 
         // get the  current question
         TextView currentQuestion = findViewById(R.id.QuestionTextView) ;
