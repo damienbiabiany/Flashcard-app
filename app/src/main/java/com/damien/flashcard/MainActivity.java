@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Set the initial index of the question
-        this.setTitle("AnimalCard 1/2");
+        this.setTitle("AnimalCard - 1/2");
 
         // -------- Map Questions, Responses -------
         HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
         Collections.shuffle(mylist);
 
-
         // SET text to each radiobutton in radiogroup
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         int count = radioGroup.getChildCount();
@@ -101,67 +100,93 @@ public class MainActivity extends AppCompatActivity {
 
     //Validate the answer response
     public void onSubmitAnswerClicked(View  view) {
-        this.questionIndex++;
-        this.setTitle("AnimalCard " + this.questionIndex+"/2");
 
-        // Change the text of submit button dynamically
         Button submitButton = findViewById(R.id.SubmitButton);
-        submitButton.setText("Question suivante");
+        System.out.println("value =" + submitButton.getText());
 
-        // Good answers by question Map
-        // -------- Map Questions, Responses -------
-        HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
-        questionAnswerMap.put("Quel est le nom de cet animal ?", "okapi");
-        questionAnswerMap.put("Quel l'origine de cet animal ?", "Argentine et Chili");
-        questionAnswerMap.put("Nombre de petits par portée ?", "1");
+        /*
+        if (submitButton.getText().equals("Question suivante")){
+            this.questionIndex++;
 
-        // get the  current question
-        TextView currentQuestion = findViewById(R.id.QuestionTextView) ;
-        String currentQuestionValue = currentQuestion.getText().toString();
+            // Change the text of submit button dynamically
+            submitButton.setText("Valider la réponse");
 
-        // get the correct answer associated to the question
-        String goodAnswer =  questionAnswerMap.get(currentQuestionValue);
-        Log.i("goodAnswer =",  goodAnswer);
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        }*/
 
-        // get the current radio button checked when we clicked onSubmit Button
-        // get selected radio button from radioGroup
-        int selectedId = radioGroup.getCheckedRadioButtonId();
+        if(this.questionIndex <= this.totalNumberOfQuestion )  {
+            this.setTitle("AnimalCard - " + this.questionIndex + "/2");
 
-        // find the radiobutton by returned id
-        RadioButton radioButtonChecked = (RadioButton) findViewById(selectedId);
-        Log.i("radioButtonChecked",radioButtonChecked.getText().toString());
+            // Change the text of submit button dynamically
+            if (submitButton.getText().equals("Question suivante")){
+                submitButton.setText("Valider la réponse");
+            } else {
+                this.questionIndex++;
+                submitButton.setText("Question suivante");
+            }
 
-        // Bad or Wrong
-        TextView goodOrBad    = findViewById(R.id.GoodBadAnswerTextView);
-        TextView answerWas    = findViewById(R.id.TheAnswerWasTextView);
 
-        System.out.println( ( goodAnswer.equals(radioButtonChecked.getText() )  ));
-        // Log.i("length",""+ ( goodAnswer.length() ));
-        // Log.i("length",""+ ( radioButtonChecked.length() ));
-        // Log.i("test"  ,""+ ( goodAnswer.getClass()));
-        // Log.i("test"  ,""+ ( radioButtonChecked.getText().getClass()) );
+            // Good answers by question Map
+            // -------- Map Questions, Responses -------
+            HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
+            questionAnswerMap.put("Quel est le nom de cet animal ?", "okapi");
+            questionAnswerMap.put("Quel l'origine de cet animal ?", "Argentine et Chili");
+            questionAnswerMap.put("Nombre de petits par portée ?", "1");
 
-        if( goodAnswer.equals(radioButtonChecked.getText().toString() ) ) {
-            goodOrBad.setText("Bonne réponse");
-            goodOrBad.setTypeface(null, Typeface.BOLD);
-            goodOrBad.setTextColor(Color.GREEN);
-            answerWas.setText("La bonne réponse était : " + goodAnswer);
-        } else {
-            goodOrBad.setText("Mauvaise réponse");
-            goodOrBad.setTypeface(null, Typeface.BOLD);
-            goodOrBad.setTextColor(Color.RED);
-            answerWas.setText("La bonne réponse était : " + goodAnswer);
+            // get the  current question
+            TextView currentQuestion = findViewById(R.id.QuestionTextView);
+            String currentQuestionValue = currentQuestion.getText().toString();
+
+            // get the correct answer associated to the question
+            String goodAnswer = questionAnswerMap.get(currentQuestionValue);
+            Log.i("goodAnswer =", goodAnswer);
+            RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
+            // get the current radio button checked when we clicked onSubmit Button
+            // get selected radio button from radioGroup
+            int selectedId = radioGroup.getCheckedRadioButtonId();
+
+            // find the radiobutton by returned id
+            RadioButton radioButtonChecked = (RadioButton) findViewById(selectedId);
+            Log.i("radioButtonChecked", radioButtonChecked.getText().toString());
+
+            // Bad or Wrong
+            TextView goodOrBad = findViewById(R.id.GoodBadAnswerTextView);
+            TextView answerWas = findViewById(R.id.TheAnswerWasTextView);
+
+            System.out.println((goodAnswer.equals(radioButtonChecked.getText())));
+            // Log.i("length",""+ ( goodAnswer.length() ));
+            // Log.i("length",""+ ( radioButtonChecked.length() ));
+            // Log.i("test"  ,""+ ( goodAnswer.getClass()));
+            // Log.i("test"  ,""+ ( radioButtonChecked.getText().getClass()) );
+
+            if (goodAnswer.equals(radioButtonChecked.getText().toString())) {
+                goodOrBad.setText("Bonne réponse");
+                goodOrBad.setTypeface(null, Typeface.BOLD);
+                goodOrBad.setTextColor(Color.GREEN);
+                answerWas.setText("La bonne réponse était : " + goodAnswer);
+            } else {
+                goodOrBad.setText("Mauvaise réponse");
+                goodOrBad.setTypeface(null, Typeface.BOLD);
+                goodOrBad.setTextColor(Color.RED);
+                answerWas.setText("La bonne réponse était : " + goodAnswer);
+            }
+
         }
 
-        // Call the next question in extra (transmettre data to the next activity)
+        if(this.questionIndex > this.totalNumberOfQuestion )  {
+            System.out.println("End of quiz");
+
+            // Change the text of submit button dynamically
+            submitButton.setText("Voir les Résultats");
+        }
+
     }
 
     public void onImageClicked(View  view) {
 
         this.countClick++;
 
-        // ----- if countClick 1 -----
+        // ----- Set the imageView size on click -----
         if (countClick  == 1){
             ImageView imageView2    = (ImageView)findViewById(R.id.imageView);
             System.out.println("width  =" + imageView2.getWidth() );
