@@ -138,12 +138,12 @@ public class MainActivity extends AppCompatActivity {
             goodOrBad.setText("Bonne réponse");
             goodOrBad.setTypeface(null, Typeface.BOLD);
             goodOrBad.setTextColor(Color.GREEN);
-            answerWas.setText("La bonne réponse était " + goodAnswer);
+            answerWas.setText("La bonne réponse était : " + goodAnswer);
         } else {
             goodOrBad.setText("Mauvaise réponse");
             goodOrBad.setTypeface(null, Typeface.BOLD);
             goodOrBad.setTextColor(Color.RED);
-            answerWas.setText("La bonne réponse était :" + goodAnswer);
+            answerWas.setText("La bonne réponse était : " + goodAnswer);
         }
 
         // Call the next question in extra (transmettre data to the next activity)
