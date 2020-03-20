@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         // -------- Map Questions, Responses -------
         HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
-        questionAnswerMap.put("Quel est le nom de cet animal ?", "South;San;Jose");
-        questionAnswerMap.put("Quel l'origine de cet animal ?", "North;Bla;Jose");
-        questionAnswerMap.put("Combien d'enfants ?", "Mountain;View;dsddssd");
+        questionAnswerMap.put("Quel est le nom de cet animal ?", "okapi;pudu;cerf");
+        questionAnswerMap.put("Quel l'origine de cet animal ?", "Argentine et Chili;Inde;Canada");
+        questionAnswerMap.put("Nombre de petis par portée ?", "1;2;4");
 
         // Get a random entry from the questionImageMap.
         Object[] crunchifyKeys = questionAnswerMap.keySet().toArray();
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, String> questionImageMap = new HashMap<String, String>();
         questionImageMap.put("Quel est le nom de cet animal ?", "@drawable/difficult_okapi");
         questionImageMap.put("Quel l'origine de cet animal ?", "@drawable/difficult_pudu");
-        questionImageMap.put("Combien d'enfants ?", "@drawable/easy_giraffe");
+        questionImageMap.put("Nombre de petis par portée ?", "@drawable/easy_giraffe");
 
         // Get a random entry from the questionImageMap.
         Object[] crunchifyKeysImage = questionAnswerMap.keySet().toArray();
@@ -103,9 +103,9 @@ public class MainActivity extends AppCompatActivity {
         // Good answers by question Map
         // -------- Map Questions, Responses -------
         HashMap<String, String> questionAnswerMap = new HashMap<String, String>();
-        questionAnswerMap.put("Quel est le nom de cet animal ?", "San");
-        questionAnswerMap.put("Quel l'origine de cet animal ?", "Bla");
-        questionAnswerMap.put("Combien d'enfants ?", "View");
+        questionAnswerMap.put("Quel est le nom de cet animal ?", "okapi");
+        questionAnswerMap.put("Quel l'origine de cet animal ?", "Argentine et Chili");
+        questionAnswerMap.put("Nombre de petis par portée ?", "1");
 
         // get the  current question
         TextView currentQuestion = findViewById(R.id.QuestionTextView) ;
@@ -173,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
 
             // Set the scale type for ImageView image scaling
             imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
-
 
             System.out.println("The number is even.");
             System.out.println("countClick =" + this.countClick);
