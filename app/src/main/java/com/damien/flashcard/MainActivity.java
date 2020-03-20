@@ -25,6 +25,7 @@ import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
+    public int countClick = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             goodOrBad.setText("Mauvaise réponse");
             goodOrBad.setTypeface(null, Typeface.BOLD);
             goodOrBad.setTextColor(Color.RED);
-            answerWas.setText("La bonne réponse était " + goodAnswer);
+            answerWas.setText("La bonne réponse était :" + goodAnswer);
         }
 
         // Call the next question in extra (transmettre data to the next activity)
@@ -153,28 +154,35 @@ public class MainActivity extends AppCompatActivity {
 
     public void onImageClicked(View  view) {
 
+        this.countClick++;
+
         // ----- if countClick 1 -----
-        ImageView imageView2    = (ImageView)findViewById(R.id.imageView);
-        System.out.println("width  =" + imageView2.getWidth() );
-        System.out.println("height =" + imageView2.getHeight() );
+        if (countClick  == 1){
+            ImageView imageView2    = (ImageView)findViewById(R.id.imageView);
+            System.out.println("width  =" + imageView2.getWidth() );
+            System.out.println("height =" + imageView2.getHeight() );
+
+            int newHeight = imageView2.getHeight() + 150; // New height in pixels
+            int newWidth  = imageView2.getWidth() + 180; // New width in pixels
+
+            imageView2.requestLayout();
+            /* getLayoutParams() Get the LayoutParams associated with this view.*/
+
+            // Apply the new height for ImageView programmatically
+            imageView2.getLayoutParams().height = newHeight;
+
+            // Apply the new width for ImageView programmatically
+            imageView2.getLayoutParams().width = newWidth;
+
+            // Set the scale type for ImageView image scaling
+            imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
 
 
-        int newHeight = imageView2.getHeight() + 200; // New height in pixels
-        int newWidth  = imageView2.getWidth() + 200; // New width in pixels
+            System.out.println("The number is even.");
+            System.out.println("countClick =" + this.countClick);
 
-        imageView2.requestLayout();
-        /* getLayoutParams() Get the LayoutParams associated with this view.*/
+        }
 
-        // Apply the new height for ImageView programmatically
-        imageView2.getLayoutParams().height = newHeight;
-
-        // Apply the new width for ImageView programmatically
-        imageView2.getLayoutParams().width = newWidth;
-
-        // Set the scale type for ImageView image scaling
-        imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
-
-        // ------- if countClick 2  ------
 
     }
     public void onRadioButtonClicked(View  view) {
